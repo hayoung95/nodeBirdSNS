@@ -41,10 +41,10 @@ const LoginForm = ({ setIsLoggedIn }) => {
                 <br />
                 <Input name="user-password" value={password} onChange={onChangePassword} required />
             </div>
-            <div>
+            <ButtonWrapper>
                 <Button type="primary" htmlType="submit" loading={false}>로그인</Button>
                 <Link href="/signup"><a>회원가입</a></Link>
-            </div>
+            </ButtonWrapper>
         </FormWrapper>      
     );
 };
