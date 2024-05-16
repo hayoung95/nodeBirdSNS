@@ -2,6 +2,8 @@ import React, {useState, useCallback} from 'react';
 import Link from 'next/link'
 import {Form, Input, Button} from 'antd';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import useInput from '../hooks/useInput';
 
 const ButtonWrapper = styled.div`
     margin-top: 10px;
@@ -12,16 +14,8 @@ const FormWrapper = styled(Form)`
 `;
 
 const LoginForm = ({ setIsLoggedIn }) => {
-    const [id, setId] = useState('');
-    const [password, setPassword] = useState('');
-
-    const onChangeId = useCallback((e) => {
-        setId(e.target.value);
-    }, []);
-
-    const onChangePassword = useCallback((e) => {
-        setPassword(e.target.value);
-    }, []);
+    const [id, onChangeId] = useInput('');
+    const [password, onChangePassword] = useInput('');
 
     // onFinish는 자동으로 preventEvent가 적용되어있어 작성하지않음
     const onSubmitForm = useCallback(() => {
@@ -49,4 +43,5 @@ const LoginForm = ({ setIsLoggedIn }) => {
     );
 };
 
+LoginForm.PropTypes
 export default LoginForm;
