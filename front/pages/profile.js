@@ -3,7 +3,7 @@ import Head from "next/head";
  
 import AppLayout from "../components/AppLayout";
 import NicknameEditForm from "../components/NicknameEditForm";
-import FollowList from "../components/FollowList";
+import FollowList from "/components/followList";
 
 const Profile = () => {
   const followerList = [{nickname: '정하영'}, {nickname: '예진'}, {nickname: '사랑'}];

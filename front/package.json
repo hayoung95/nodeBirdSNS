@@ -12,9 +12,11 @@
     "@ant-design/icons": "^5.3.6",
     "antd": "^5.16.4",
     "next": "^9.5.5",
+    "next-redux-wrapper": "^8.1.0",
     "prop-types": "^15.8.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "redux": "^5.0.1",
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
