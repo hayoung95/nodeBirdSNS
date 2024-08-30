@@ -1,30 +1,25 @@
-import React, { useState, useCallback } from "react";
-import Link from "next/link";
-import { Form, Input, Button } from "antd";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import useInput from "../hooks/useInput";
+import React, { useCallback } from 'react';
+import { Button, Form, Input } from 'antd';
+import Link from 'next/link';
+import { useDispatch } from 'react-redux';
 
-const ButtonWrapper = styled.div`
-  margin-top: 10px;
-`;
+import useInput from '../hooks/useInput';
+import { loginAction } from '../reducers/user';
 
-const FormWrapper = styled(Form)`
-  padding: 10px;
-`;
+const LoginForm = () => {
+  const [id, onChangeId] = useInput('');
+  const [password, onChangePassword] = useInput('');
+  const dispatch = useDispatch();
 
-const LoginForm = ({ setIsLoggedIn }) => {
-  const [id, onChangeId] = useInput("");
-  const [password, onChangePassword] = useInput("");
-
-  // onFinish는 자동으로 preventEvent가 적용되어있어 작성하지않음
   const onSubmitForm = useCallback(() => {
-    console.log(id, password);
-    setIsLoggedIn(true);
+    dispatch(loginAction({
+      id,
+      password,
+    }));
   }, [id, password]);
 
   return (
-    <FormWrapper onFinish={onSubmitForm}>
+    <Form onFinish={onSubmitForm} style={{ padding: '10px' }}>
       <div>
         <label htmlFor="user-id">아이디</label>
         <br />
@@ -33,24 +28,14 @@ const LoginForm = ({ setIsLoggedIn }) => {
       <div>
         <label htmlFor="user-password">비밀번호</label>
         <br />
-        <Input
-          name="password"
-          value={password}
-          onChange={onChangePassword}
-          required
-        />
+        <Input name="user-password" value={password} onChange={onChangePassword} type="password" required />
       </div>
-      <ButtonWrapper>
-        <Button type="primary" htmlType="submit" loading={false}>
-          로그인
-        </Button>
-        <Link href="/signup">
-          <a>회원가입</a>
-        </Link>
-      </ButtonWrapper>
-    </FormWrapper>
+      <div style={{ marginTop: '10px' }}>
+        <Button type="primary" htmlType="submit" loading={false}>로그인</Button>
+        <Link href="/signup"><a><Button>회원가입</Button></a></Link>
+      </div>
+    </Form>
   );
 };
 
-LoginForm.PropTypes;
 export default LoginForm;

@@ -1,23 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Head from 'next/head';
+import PropTypes from 'prop-types';
 
 import wrapper from '../store/configureStore';
 
-const NordBird = ({ Component }) => {
-    return (
-        <>
-            <Head>
-                <meta charSet="utf-8" />
-                <title>노드버드</title>
-            </Head>
-            <Component />
-        </>
-    );
+const NodeBird = ({ Component }) => {
+  return (
+    <>
+      <Head>
+        <title>NodeBird</title>
+      </Head>
+      <Component />
+    </>
+  );
 };
 
-NordBird.PropTypes = {
-    Component : PropTypes.elementType.isRequired
-}
+NodeBird.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+};
 
-export default wrapper.withRedux(NordBird);
+export default wrapper.withRedux(NodeBird);
